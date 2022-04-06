@@ -13,6 +13,10 @@ class LocalDataSource @Inject constructor(
     private val mComingSoonDao: ComingSoonDao,
     private val mDetailMovieDao: DetailMovieDao,
     private val mPopularMoviesGridDao: PopularMoviesGridDao,
+    private val mMoviesGenreDao: MoviesGenreDao,
+    private val mMoviesInGenreDao: MoviesInGenreDao,
+    private val mReviewDao: ReviewDao,
+    private val mTrailerVideoDao: TrailerVideoDao,
 ) {
 
     // Banner
@@ -56,5 +60,41 @@ class LocalDataSource @Inject constructor(
 
     fun getSearchPopularMoviesGrid(search: String): Flow<List<PopularMoviesGridEntity>> =
         mPopularMoviesGridDao.getSearchPopularMoviesGrid(search)
+
+
+    // Movies Genre
+    fun getMoviesGenre(): Flow<List<MoviesGenreEntity>> = mMoviesGenreDao.getMoviesGenre()
+
+    suspend fun insertMoviesGenre(moviesGenre: List<MoviesGenreEntity>) = mMoviesGenreDao.insertAndDeleteMoviesGenre(moviesGenre)
+
+    suspend fun deleteMoviesGenre() = mMoviesGenreDao.deleteMoviesGenre()
+
+
+    // Movies In Genre
+    fun getMoviesInGenre(): Flow<List<MoviesInGenreEntity>> = mMoviesInGenreDao.getMoviesInGenre()
+
+    suspend fun insertMoviesInGenre(moviesInGenre: List<MoviesInGenreEntity>) = mMoviesInGenreDao.insertAndDeleteMoviesInGenre(moviesInGenre)
+
+    suspend fun deleteMoviesInGenre() = mMoviesInGenreDao.deleteMoviesInGenre()
+
+    fun getSearchMoviesInGenre(search: String): Flow<List<MoviesInGenreEntity>> =
+        mMoviesInGenreDao.getSearchMoviesInGenre(search)
+
+
+    // Movie Review
+    fun getReview(): Flow<List<ReviewEntity>> = mReviewDao.getReview()
+
+    suspend fun insertReview(review: List<ReviewEntity>) = mReviewDao.insertAndDeleteReview(review)
+
+    suspend fun deleteReview() = mReviewDao.deleteReview()
+
+
+    // Movie Review
+    fun getTrailerVideo(): Flow<List<TrailerVideoEntity>> = mTrailerVideoDao.getTrailerVideo()
+
+    suspend fun insertTrailerVideo(trailerVideo: List<TrailerVideoEntity>) = mTrailerVideoDao.insertAndDeleteTrailerVideo(trailerVideo)
+
+    suspend fun deleteTrailerVideo() = mTrailerVideoDao.deleteTrailerVideo()
+
 
 }

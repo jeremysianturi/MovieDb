@@ -41,16 +41,7 @@ class PopularMoviesAdapter : RecyclerView.Adapter<PopularMoviesAdapter.UserViewH
             with(binding) {
 
                 Timber.d("check value image popular movie adapter : ${data.posterPath}")
-//                // concat string
-//                tvContenttitle.text = "cuisine type: ${data.categoriesTitle}"
-//                tvNameWahana.text = "Name: ${data.name}"
-//                tvDateWahana.text = "Rating: ${data.rating}"
-//                tvPostalCode.text = "Postal Code: ${data.locationZipCode}"
-//                tvDistance.text = "Distance: ${data.distance}"
                 ivPoster.loadImage(itemView.context,"https://image.tmdb.org/t/p/original${data.posterPath}")
-//                ivContentWahana.loadImage(itemView.context,data.thumbnail)
-
-
 
             }
         }

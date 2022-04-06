@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
         android:name=".MyApplication"
@@ -16,10 +15,16 @@
         android:theme="@style/Theme.MyMovies"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.activity.choosevideo.ChooseVideoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.moviesingenre.MoviesInGenreActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.fragment.moviedetail.DetailMovieActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.HomeScreen"
+            android:name=".ui.activity.HomeScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

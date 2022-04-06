@@ -7,28 +7,22 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.moviedetail.DetailMovieActivity">
 
-    <ImageView
-        android:id="@+id/iv_poster_detail"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/ll_button">
-    </ImageView>
+        app:layout_constraintBottom_toBottomOf="parent">
 
-    <LinearLayout
-        android:id="@+id/ll_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2"
+        <ImageView
+            android:id="@+id/iv_poster_detail"
+            android:layout_width="match_parent"
+            android:layout_height="270dp">
+        </ImageView>
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_poster_detail"
-        app:layout_constraintBottom_toTopOf="@id/tv_cast_title">
 
         <Button
             android:id="@+id/btn_watch_trailer"
@@ -37,56 +31,34 @@
             android:layout_margin="@dimen/dimen_16"
             android:background="@color/teal_700"
             android:textColor="@color/white"
-            android:text="Watch Trailer"
-            android:layout_weight="1">
+            android:text="Watch Trailer">
         </Button>
 
-        <Button
-            android:id="@+id/btn_add_to_favorite"
+
+        <TextView
+            android:id="@+id/tv_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen_16"
-            android:background="@color/teal_700"
-            android:textColor="@color/white"
-            android:text="Add to Favorite"
-            android:layout_weight="1">
-        </Button>
+            android:text="@string/tv_description">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_title_review"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_review">
+        </TextView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_movie_review"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_list_review">
+        </androidx.recyclerview.widget.RecyclerView>
+
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/tv_description"
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ll_button"
-        app:layout_constraintBottom_toTopOf="@id/tv_cast_title">
-    </TextView>
-
-    <TextView
-        android:id="@+id/tv_cast_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/tv_cast"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_description"
-        app:layout_constraintBottom_toTopOf="@id/rv_cast">
-    </TextView>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_cast"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_cast_title"
-        app:layout_constraintBottom_toBottomOf="parent">
-    </androidx.recyclerview.widget.RecyclerView>
 
     <ProgressBar
         android:id="@+id/progress_bar_detail_movie"

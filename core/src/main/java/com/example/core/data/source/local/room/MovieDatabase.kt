@@ -15,6 +15,10 @@ import com.example.core.utils.LovedEntity
         DetailMovieEntity::class,
         PopularMoviesGridEntity::class,
         LovedEntity::class,
+        MoviesGenreEntity::class,
+        MoviesInGenreEntity::class,
+        ReviewEntity::class,
+        TrailerVideoEntity::class
     ],
     version = 1,
     exportSchema = false
@@ -34,5 +38,12 @@ abstract class MovieDatabase : RoomDatabase() {
 
     abstract fun lovedDao(): LovedDao
 
+    abstract fun moviesGenreDao(): MoviesGenreDao
+
+    abstract fun moviesInGenreDao(): MoviesInGenreDao
+
+    abstract fun reviewDao(): ReviewDao
+
+    abstract fun trailerVideoDao(): TrailerVideoDao
 
 }

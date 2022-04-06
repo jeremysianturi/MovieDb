@@ -5,8 +5,12 @@ import com.example.core.data.source.remote.network.ApiService
 import com.example.core.data.source.remote.response.banner.BannerResponse
 import com.example.core.data.source.remote.response.comingsoon.ComingSoonResponse
 import com.example.core.data.source.remote.response.detailmovie.DetailMovieResponse
+import com.example.core.data.source.remote.response.moviesgenre.MoviesGenreResponse
+import com.example.core.data.source.remote.response.moviesingenre.MoviesInGenreResponse
 import com.example.core.data.source.remote.response.popularmovies.PopularMovieResponse
 import com.example.core.data.source.remote.response.popularmoviesgrid.PopularMovieGridResponse
+import com.example.core.data.source.remote.response.review.ReviewResponse
+import com.example.core.data.source.remote.response.trailervideo.TrailerVideoResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -125,6 +129,92 @@ class RemoteDataSource @Inject constructor(
         return flow {
             try {
                 val response = apiService.getPopularMoviesGrid(apiKey, language, sortBy, includeAdult, includeVideo, page,year)
+                val dataArray = response.results
+                if (dataArray.isNotEmpty()) {
+                    emit(ApiResponse.Success(response.results))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun getMoviesGenre(
+        apiKey: String,
+        language: String
+    ): Flow<ApiResponse<List<MoviesGenreResponse>>> {
+        return flow {
+            try {
+                val response = apiService.getMoviesGenre(apiKey, language)
+                val dataArray = response.genre
+                if (dataArray.isNotEmpty()) {
+                    emit(ApiResponse.Success(response.genre))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun getMoviesInGenre(
+        apiKey: String,
+        language: String,
+        sortBy: String,
+        includeAdult: Boolean,
+        includeVideo: Boolean,
+        page: String,
+        withWatchMonetizatioTypes: String,
+        withGenres: String
+    ): Flow<ApiResponse<List<MoviesInGenreResponse>>> {
+        return flow {
+            try {
+                val response = apiService.getMoviesInGenre(apiKey, language, sortBy, includeAdult, includeVideo, page, withWatchMonetizatioTypes, withGenres)
+                val dataArray = response.results
+                if (dataArray.isNotEmpty()) {
+                    emit(ApiResponse.Success(response.results))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun getReview(
+        movieId : String,
+        apiKey: String,
+        language: String,
+        page: String
+    ): Flow<ApiResponse<List<ReviewResponse>>> {
+        return flow {
+            try {
+                val response = apiService.getReview(movieId, apiKey, language, page)
+                val dataArray = response.results
+                if (dataArray.isNotEmpty()) {
+                    emit(ApiResponse.Success(response.results))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
+
+    suspend fun getTrailerVideo(
+        movieId : String,
+        apiKey: String,
+        language: String,
+    ): Flow<ApiResponse<List<TrailerVideoResponse>>> {
+        return flow {
+            try {
+                val response = apiService.getTrailerVideo(movieId, apiKey, language)
                 val dataArray = response.results
                 if (dataArray.isNotEmpty()) {
                     emit(ApiResponse.Success(response.results))

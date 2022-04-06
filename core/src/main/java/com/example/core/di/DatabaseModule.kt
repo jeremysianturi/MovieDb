@@ -41,4 +41,16 @@ class DatabaseModule {
     @Provides
     fun provideLovedDao(database: MovieDatabase): LovedDao = database.lovedDao()
 
+    @Provides
+    fun moviesGenreDao(database: MovieDatabase): MoviesGenreDao = database.moviesGenreDao()
+
+    @Provides
+    fun moviesInGenreDao(database: MovieDatabase): MoviesInGenreDao = database.moviesInGenreDao()
+
+    @Provides
+    fun reviewDao(database: MovieDatabase): ReviewDao = database.reviewDao()
+
+    @Provides
+    fun trailerVideoDao(database: MovieDatabase): TrailerVideoDao = database.trailerVideoDao()
+
 }
