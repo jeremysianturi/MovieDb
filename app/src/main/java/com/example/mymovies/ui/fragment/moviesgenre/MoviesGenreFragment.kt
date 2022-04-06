@@ -88,7 +88,7 @@ class MoviesGenreFragment : Fragment() {
 
 
     private fun buildListMoviesGenre() {
-        Log.d("check","test")
+        
         adapterMoviesGenre = MoviesGenreAdapter()
         binding.rvMoviesGenre.setHasFixedSize(true)
         binding.rvMoviesGenre.layoutManager =
